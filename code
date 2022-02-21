@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* css for first name error*/
+        #firstnameError {
+            display: none;
+            font-size: 0.8em;
+        }
+
+        #firstnameError.visible {
+            display: block;
+        }
+
+        input.invalid {
+            border-color: red;
+        }
+        
+        /* css for last name error*/
+        #lastnameError {
+            display: none;
+            font-size: 0.8em;
+        }
+
+        #lastnameError.visible {
+            display: block;
+        }
+
+        /* css for college name error*/
+        #collegenameError {
+            display: none;
+            font-size: 0.8em;
+        }
+
+        #collegenameError.visible {
+            display: block;
+        }
+
+        /* css for student number error*/
+        #studentnumberError {
+            display: none;
+            font-size: 0.8em;
+        }
+
+        #studentnumberError.visible {
+            display: block;
+        }
+
+        /* css for university roll error*/
+        #univerityRollNumberError {
+            display: none;
+            font-size: 0.8em;
+        }
+
+        #univerityRollNumberError.visible {
+            display: block;
+        }
+
+        /* css for branch field error*/
+        #branchError {
+            display: none;
+            font-size: 0.8em;
+        }
+
+        #branchError.visible {
+            display: block;
+        }
+        
+        /* css for email field error*/
+        #emailError {
+            display: none;
+            font-size: 0.8em;
+        }
+
+        #emailError.visible {
+            display: block;
+        }
+
+        /* css for skill field error*/
+        #skillError {
+            display: none;
+            font-size: 0.8em;
+        }
+
+        #skillError.visible {
+            display: block;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <h3><u>Student Registration Form</u></h3><br>
+        <form id="form">
+        <label for="firstname"> First Name* </label><br><br>
+        <input type="text" name="firstname" id="firstname" />
+
+        <span role="alert" id="firstnameError" aria-hidden="true"><br>
+            Please enter valid First Name
+        </span>
+        <br><br>
+        
+        <label for="lastname"> Last Name* </label><br><br>
+        <input type="text" name="lastname" id="lastname" />
+
+        <span role="alert" id="lastnameError" aria-hidden="true"><br>
+            Please enter valid Last Name
+        </span>
+        <br><br>
+
+        <label for="college"> College Name* </label><br><br>
+        <input type="text" name="college" id="college" />
+
+        <span role="alert" id="collegenameError" aria-hidden="true"><br>
+            Please enter valid college Name
+        </span>
+        <br><br>
+
+        <label for="studentNumber"> Student Number* </label><br><br>
+        <input type="text" name="studentNumber" id="studentNumber" />
+
+        <span role="alert" id="studentnumberError" aria-hidden="true"><br>
+            Please enter valid student Number
+        </span>
+        <br><br>
+
+        <label for="univerityRollNumber"> Univerity Roll Number* </label><br><br>
+        <input type="text" name="univerityRollNumber" id="univerityRollNumber" />
+
+        <span role="alert" id="univerityRollNumberError" aria-hidden="true"><br>
+            Please enter valid univerity Roll Number
+        </span>
+        <br><br>
+
+        <label for="branch"> branch* </label><br><br>
+        <input type="text" name="branch" id="branch" />
+
+        <span role="alert" id="branchError" aria-hidden="true"><br>
+            Please enter valid branch Name
+        </span>
+        <br><br>
+
+        <label for="email"> Email* </label><br><br>
+        <input type="email" name="email" id="email" />
+
+        <span role="alert" id="emailError" aria-hidden="true"><br>
+            Please enter valid email id
+        </span>
+        <br><br>
+
+        <label for="skills"> Skills* </label><br><br>
+        <input type="skills" name="skills" id="skills" />
+
+        
+        <span role="alert" id="skillError" aria-hidden="true"><br>
+            Please enter valid skills
+        </span>
+        <br><br>
+        
+        <button id="submit">Submit</button>
+
+        
+
+
+    </form>
+
+    <script>
+        const submit = document.getElementById("submit");
+
+        submit.addEventListener("click", validate);
+
+        function validate(e) {
+        e.preventDefault();
+        let valid = true;
+        // for first Name
+
+        const firstNameField = document.getElementById("firstname");
+        const firstNameError = document.getElementById("firstnameError");
+        var c = 0;
+        
+        if (firstNameField.value.length == 0) {
+            firstNameError.classList.add("visible");
+            firstNameField.classList.add("invalid");
+            firstNameError.setAttribute("aria-hidden", false);
+            firstNameError.setAttribute("aria-invalid", true);
+        }
+        else{
+            var k = 0;
+            for(var i = 0; i < firstNameField.value.length; i++){
+    
+                if(!((firstNameField.value[i] >= 'A' && firstNameField.value[i] <= 'Z') || (firstNameField.value[i] >= 'a' && firstNameField.value[i] <= 'z'))){
+                    k = 1;
+                    break;
+                }
+            }
+            if(k == 1){
+                firstNameError.classList.add("visible");
+                firstNameField.classList.add("invalid");
+                firstNameError.setAttribute("aria-hidden", false);
+                firstNameError.setAttribute("aria-invalid", true);
+            }else{
+                c++;
+                firstNameError.classList.remove("visible");
+                firstNameField.classList.remove("invalid");
+                firstNameError.removeAttribute("aria-hidden", false);
+                firstNameError.removeAttribute("aria-invalid", true);
+            }
+        }
+
+        // for last name
+        
+        const lastNameField = document.getElementById("lastname");
+        const lastnameError = document.getElementById("lastnameError");
+
+        if (lastNameField.value.length == 0) {    
+            lastnameError.classList.add("visible");
+            lastNameField.classList.add("invalid");
+            lastnameError.setAttribute("aria-hidden", false);
+            lastnameError.setAttribute("aria-invalid", true);
+        }else{
+
+            var k = 0;
+            for(var i = 0; i < lastNameField.value.length; i++){
+    
+                if(!((lastNameField.value[i] >= 'A' && lastNameField.value[i] <= 'Z') || (lastNameField.value[i] >= 'a' && lastNameField.value[i] <= 'z'))){
+                    k = 1;
+                    break;
+                }
+            }
+            if(k == 1){
+                lastnameError.classList.add("visible");
+                lastNameField.classList.add("invalid");
+                lastnameError.setAttribute("aria-hidden", false);
+                lastnameError.setAttribute("aria-invalid", true);
+            }
+            else{
+                c++;
+                lastnameError.classList.remove("visible");
+                lastNameField.classList.remove("invalid");
+                lastnameError.removeAttribute("aria-hidden", false);
+                lastnameError.removeAttribute("aria-invalid", true);
+            }
+        }
+
+        // for college Name
+        
+        const collegeNameField = document.getElementById("college");
+        const collegeNameError = document.getElementById("collegenameError");
+
+        if (collegeNameField.value.length == 0) {    
+            collegeNameError.classList.add("visible");
+            collegeNameField.classList.add("invalid");
+            collegeNameError.setAttribute("aria-hidden", false);
+            collegeNameError.setAttribute("aria-invalid", true);
+        }else{
+
+            var k = 0;
+            for(var i = 0; i < collegeNameField.value.length; i++){
+    
+                if(!((collegeNameField.value[i] >= 'A' && collegeNameField.value[i] <= 'Z') || (collegeNameField.value[i] >= 'a' && collegeNameField.value[i] <= 'z') || collegeNameField.value[i] == ' ')){
+                    k = 1;
+                    break;
+                }
+            }
+            if(k == 1){
+                collegeNameError.classList.add("visible");
+                collegeNameField.classList.add("invalid");
+                collegeNameError.setAttribute("aria-hidden", false);
+                collegeNameError.setAttribute("aria-invalid", true);
+            }
+            else{
+                c++;
+                collegeNameError.classList.remove("visible");
+                collegeNameField.classList.remove("invalid");
+                collegeNameError.removeAttribute("aria-hidden", false);
+                collegeNameError.removeAttribute("aria-invalid", true);
+            }
+        }
+
+        // for student number
+
+        const studentNumberField = document.getElementById("studentNumber");
+        const studentNumberError = document.getElementById("studentnumberError");
+
+        if (studentNumberField.value.length == 0) {    
+            studentNumberError.classList.add("visible");
+            studentNumberField.classList.add("invalid");
+            studentNumberError.setAttribute("aria-hidden", false);
+            studentNumberError.setAttribute("aria-invalid", true);
+        }else{
+
+            var k = 0;
+            for(var i = 0; i < studentNumberField.value.length; i++){
+    
+                if(!(studentNumberField.value[i] >= '0' && studentNumberField.value[i] <= '9')){
+                    k = 1;
+                    break;
+                }
+            }
+            if(studentNumberField.value.length != 7){
+                k = 1;
+            }
+            if(k == 1){
+                studentNumberError.classList.add("visible");
+                studentNumberField.classList.add("invalid");
+                studentNumberError.setAttribute("aria-hidden", false);
+                studentNumberError.setAttribute("aria-invalid", true);
+            }
+            else{
+            c++;
+                studentNumberError.classList.remove("visible");
+                studentNumberField.classList.remove("invalid");
+                studentNumberError.removeAttribute("aria-hidden", false);
+                studentNumberError.removeAttribute("aria-invalid", true);
+            }
+        }
+         
+        // for university roll number
+
+        const univerityRollNumberField = document.getElementById("univerityRollNumber");
+        const univerityRollNumberError = document.getElementById("univerityRollNumberError");
+
+        if (univerityRollNumberField.value.length == 0) {    
+            univerityRollNumberError.classList.add("visible");
+            univerityRollNumberField.classList.add("invalid");
+            univerityRollNumberError.setAttribute("aria-hidden", false);
+            univerityRollNumberError.setAttribute("aria-invalid", true);
+        }else{
+
+            var k = 0;
+            for(var i = 0; i < univerityRollNumberField.value.length; i++){
+    
+                if(!(univerityRollNumberField.value[i] >= '0' && univerityRollNumberField.value[i] <= '9')){
+                    k = 1;
+                    break;
+                }
+            }
+            if(univerityRollNumberField.value.length != 13){
+                k = 1;
+            }
+            if(k == 1){
+                univerityRollNumberError.classList.add("visible");
+                univerityRollNumberField.classList.add("invalid");
+                univerityRollNumberError.setAttribute("aria-hidden", false);
+                univerityRollNumberError.setAttribute("aria-invalid", true);
+            }
+            else{
+                c++;
+                univerityRollNumberError.classList.remove("visible");
+                univerityRollNumberField.classList.remove("invalid");
+                univerityRollNumberError.removeAttribute("aria-hidden", false);
+                univerityRollNumberError.removeAttribute("aria-invalid", true);
+            }
+        }
+
+        // for branch
+
+        const branchField = document.getElementById("branch");
+        const branchError = document.getElementById("branchError");
+
+        if (branchField.value.length == 0) {    
+            branchError.classList.add("visible");
+            branchField.classList.add("invalid");
+            branchError.setAttribute("aria-hidden", false);
+            branchError.setAttribute("aria-invalid", true);
+        }else{
+            var k = 0;
+            for(var i = 0; i < branchField.value.length; i++){
+    
+                if(!((branchField.value[i] >= 'A' && branchField.value[i] <= 'Z') || (branchField.value[i] >= 'a' && branchField.value[i] <= 'z'))){
+                    k = 1;
+                    break;
+                }
+            }
+            if(k == 1){
+                branchError.classList.add("visible");
+                branchField.classList.add("invalid");
+                branchError.setAttribute("aria-hidden", false);
+                branchError.setAttribute("aria-invalid", true);
+            }
+            else{
+                c++;
+                branchError.classList.remove("visible");
+                branchField.classList.remove("invalid");
+                branchError.removeAttribute("aria-hidden", false);
+                branchError.removeAttribute("aria-invalid", true);
+            }
+        }
+
+        // for email
+
+        const emailField = document.getElementById("email");
+        const emailError = document.getElementById("emailError");
+
+        if (emailField.value.length == 0) {    
+            emailError.classList.add("visible");
+            emailField.classList.add("invalid");
+            emailError.setAttribute("aria-hidden", false);
+            emailError.setAttribute("aria-invalid", true);
+        }else{
+            var k = 0;
+            if(emailField.value.length < 4){
+                k = 1;
+            }
+            else{
+                if(!(emailField.value[emailField.value.length - 1] == 'm' && emailField.value[emailField.value.length - 2] == 'o' && emailField.value[emailField.value.length - 3] == 'c' && emailField.value[emailField.value.length - 4] == '.')){
+                    k = 1;
+                }
+            }
+            if(k == 1){
+                emailError.classList.add("visible");
+                emailField.classList.add("invalid");
+                emailError.setAttribute("aria-hidden", false);
+                emailError.setAttribute("aria-invalid", true);
+            }
+            else{
+                c++;
+                emailError.classList.remove("visible");
+                emailField.classList.remove("invalid");
+                emailError.removeAttribute("aria-hidden", false);
+                emailError.removeAttribute("aria-invalid", true);
+            }
+        }
+
+
+        // for skills
+
+        
+        const skillsField = document.getElementById("skills");
+        const skillError = document.getElementById("skillError");
+
+        if (skillsField.value.length == 0) {    
+            skillError.classList.add("visible");
+            skillsField.classList.add("invalid");
+            skillError.setAttribute("aria-hidden", false);
+            skillError.setAttribute("aria-invalid", true);
+        }else{
+            c++;
+            skillError.classList.remove("visible");
+            skillsField.classList.remove("invalid");
+            skillError.removeAttribute("aria-hidden", false);
+            skillError.removeAttribute("aria-invalid", true);
+        }
+        if(c == 8){
+            document.write("form is Valid!");
+        }
+        return valid;
+        }
+        
+    </script>
+</body>
+</html>
